@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_projects"
+        android:icon="@drawable/clipboard_list_outline"
+        android:title="Проекты" />
+
+    <item
+        android:id="@+id/nav_tasks"
+        android:icon="@drawable/check_circle_outline"
+        android:title="Задачи" />
+
+    <item
+        android:id="@+id/nav_clients"
+        android:icon="@drawable/people_outline"
+        android:title="Клиенты" />
+
+</menu>

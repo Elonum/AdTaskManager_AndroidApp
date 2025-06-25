@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281876711183",
+    "project_id": "adtaskmanager",
+    "storage_bucket": "adtaskmanager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281876711183:android:aaaf199d101a2484bca07a",
+        "android_client_info": {
+          "package_name": "com.example.adtaskmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRqL9ZCpllaInAbTpM1JPZTIN42lATNrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
