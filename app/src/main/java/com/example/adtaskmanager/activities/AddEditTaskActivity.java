@@ -122,9 +122,9 @@ public class AddEditTaskActivity extends AppCompatActivity {
     private void setupSpinners() {
         // Заглушка для исполнителей
         assignees = new ArrayList<>();
-        assignees.add(new User("user1", "Иван Иванов", "ivan@example.com"));
-        assignees.add(new User("user2", "Мария Петрова", "maria@example.com"));
-        assignees.add(new User("user3", "Ольга Сидорова", "olga@example.com"));
+        assignees.add(new User("user1", "Иван", "Иванов", "ivan@example.com"));
+        assignees.add(new User("user2", "Мария", "Петрова", "maria@example.com"));
+        assignees.add(new User("user3", "Ольга", "Сидорова", "olga@example.com"));
 
         ArrayAdapter<User> assigneeAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, assignees);

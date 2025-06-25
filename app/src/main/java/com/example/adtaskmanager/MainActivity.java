@@ -23,6 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.adtaskmanager.R; // Убедитесь, что R импортируется
 import com.example.adtaskmanager.adapters.FragmentAdapter; // Новый адаптер для ViewPager2
 import com.example.adtaskmanager.fragments.ProjectsFragment; // Импортируем фрагменты, если нужно получить ссылку
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,6 +131,18 @@ public class MainActivity extends AppCompatActivity {
             // Поведение кнопки в тулбаре такое же, как у FAB
             fabAdd.performClick();
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     // Метод для обновления заголовка тулбара и описания FAB/Toolbar кнопки

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">AdTaskManager</string>
+    <string name="login">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="have_account">Уже есть аккаунт? Войти</string>
+    <string name="no_account">Нет аккаунта? Зарегистрироваться</string>
+    <string name="logout">Выйти</string>
+    <string name="registration_success">Регистрация успешна!</string>
+    <string name="login_success">Вход выполнен!</string>
+    <string name="error_invalid_email">Некорректный email</string>
+    <string name="error_invalid_password">Пароль должен быть не менее 6 символов</string>
+    <string name="error_empty_name">Введите имя</string>
+    <string name="error_auth_failed">Ошибка авторизации</string>
+    <string name="error_empty_surname">Введите фамилию</string>
+    <string name="error_invalid_name">Имя не должно содержать цифры, пробелов и специальных символов</string>
+    <string name="error_invalid_surname">Фамилия не должна содержать цифры, пробелов и специальных символов</string>
+    <string name="error_invalid_email_format">Некорректный формат email</string>
+    <string name="error_no_spaces">Пробелы недопустимы</string>
 </resources>
