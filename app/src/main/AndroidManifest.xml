@@ -39,6 +39,9 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
 
         <activity
             android:name=".LoginActivity"

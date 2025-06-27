@@ -5,13 +5,17 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    private long createdAt;
 
-    public User(String id, String name, String surname, String email) {
+    public User(String id, String name, String surname, String email, long createdAt) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.createdAt = createdAt;
     }
+
+    public User() {}
 
     public String getId() {
         return id;
@@ -29,6 +33,10 @@ public class User {
         return email;
     }
 
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -43,6 +51,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

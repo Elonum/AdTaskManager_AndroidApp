@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.adtaskmanager.fragments.ClientsFragment;
 import com.example.adtaskmanager.fragments.ProjectsFragment;
 import com.example.adtaskmanager.fragments.TasksFragment;
+import com.example.adtaskmanager.fragments.ProfileFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 
@@ -25,6 +26,8 @@ public class FragmentAdapter extends FragmentStateAdapter {
                 return new TasksFragment();
             case 2:
                 return new ClientsFragment();
+            case 3:
+                return new ProfileFragment();
             default:
                 return new ProjectsFragment(); // Fallback
         }
@@ -32,6 +35,6 @@ public class FragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3; // У нас 3 вкладки: Проекты, Задачи, Клиенты
+        return 4; // 4 вкладки: Проекты, Задачи, Клиенты, Профиль
     }
 }

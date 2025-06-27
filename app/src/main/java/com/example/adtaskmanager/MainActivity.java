@@ -72,13 +72,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_projects) {
-                viewPager.setCurrentItem(0); // Первая вкладка: Проекты
+                viewPager.setCurrentItem(0);
                 return true;
             } else if (itemId == R.id.nav_tasks) {
-                viewPager.setCurrentItem(1); // Вторая вкладка: Задачи
+                viewPager.setCurrentItem(1);
                 return true;
             } else if (itemId == R.id.nav_clients) {
-                viewPager.setCurrentItem(2); // Третья вкладка: Клиенты
+                viewPager.setCurrentItem(2);
+                return true;
+            } else if (itemId == R.id.navigation_profile) {
+                viewPager.setCurrentItem(3);
                 return true;
             }
             return false;
@@ -89,7 +92,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                switch (position) {
+                    case 0:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_projects);
+                        break;
+                    case 1:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_tasks);
+                        break;
+                    case 2:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_clients);
+                        break;
+                    case 3:
+                        bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
+                        break;
+                }
                 updateUiForSelectedTab(position);
             }
         });
@@ -148,30 +164,35 @@ public class MainActivity extends AppCompatActivity {
     // Метод для обновления заголовка тулбара и описания FAB/Toolbar кнопки
     private void updateUiForSelectedTab(int position) {
         switch (position) {
-            case 0: // Проекты
+            case 0:
                 toolbarTitle.setText("Проекты");
                 fabAdd.setContentDescription("Добавить новый проект");
                 btnAddToolbar.setContentDescription("Добавить новый проект");
-                fabAdd.show(); // Показывать FAB для добавления проекта
+                fabAdd.show();
                 btnAddToolbar.setVisibility(View.VISIBLE);
-                btnFilterSort.setVisibility(View.VISIBLE); // Показать кнопку фильтрации
+                btnFilterSort.setVisibility(View.VISIBLE);
                 break;
-            case 1: // Задачи
+            case 1:
                 toolbarTitle.setText("Задачи");
                 fabAdd.setContentDescription("Добавить новую задачу");
                 btnAddToolbar.setContentDescription("Добавить новую задачу");
-                // Можно скрыть FAB или изменить его поведение, так как задачи обычно добавляются в рамках проекта
-                fabAdd.hide(); // Скрыть FAB для задач
-                btnAddToolbar.setVisibility(View.GONE); // Скрыть кнопку добавления в тулбаре для задач
-                btnFilterSort.setVisibility(View.VISIBLE); // Показать кнопку фильтрации
+                fabAdd.hide();
+                btnAddToolbar.setVisibility(View.GONE);
+                btnFilterSort.setVisibility(View.VISIBLE);
                 break;
-            case 2: // Клиенты
+            case 2:
                 toolbarTitle.setText("Клиенты");
                 fabAdd.setContentDescription("Добавить нового клиента");
                 btnAddToolbar.setContentDescription("Добавить нового клиента");
-                fabAdd.show(); // Показывать FAB для добавления клиента
+                fabAdd.show();
                 btnAddToolbar.setVisibility(View.VISIBLE);
-                btnFilterSort.setVisibility(View.GONE); // Скрыть кнопку фильтрации для клиентов (по вашим скриншотам)
+                btnFilterSort.setVisibility(View.GONE);
+                break;
+            case 3:
+                toolbarTitle.setText("Профиль");
+                fabAdd.hide();
+                btnAddToolbar.setVisibility(View.GONE);
+                btnFilterSort.setVisibility(View.GONE);
                 break;
         }
     }

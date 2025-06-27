@@ -16,4 +16,9 @@
         android:icon="@drawable/people_outline"
         android:title="Клиенты" />
 
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile_ic"
+        android:title="Профиль" />
+
 </menu>

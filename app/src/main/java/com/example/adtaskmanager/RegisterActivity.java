@@ -61,51 +61,55 @@ public class RegisterActivity extends AppCompatActivity {
         layoutEmail.setError(null);
         layoutPassword.setError(null);
 
-        // Проверка имени и фамилии: только буквы, без пробелов, без цифр
+        boolean hasError = false;
+
+        // Проверка имени: только буквы, без пробелов, без цифр
         if (TextUtils.isEmpty(name)) {
             layoutName.setError(getString(R.string.error_empty_name));
-            return;
-        }
-        if (!name.matches("^[A-Za-zА-Яа-яЁё]+$") || name.contains(" ")) {
+            hasError = true;
+        } else if (!name.matches("^[A-Za-zА-Яа-яЁё]+$") || name.contains(" ")) {
             layoutName.setError(getString(R.string.error_invalid_name));
-            return;
+            hasError = true;
         }
+
+        // Проверка фамилии: только буквы, без пробелов, без цифр
         if (TextUtils.isEmpty(surname)) {
             layoutSurname.setError(getString(R.string.error_empty_surname));
-            return;
-        }
-        if (!surname.matches("^[A-Za-zА-Яа-яЁё]+$") || surname.contains(" ")) {
+            hasError = true;
+        } else if (!surname.matches("^[A-Za-zА-Яа-яЁё]+$") || surname.contains(" ")) {
             layoutSurname.setError(getString(R.string.error_invalid_surname));
-            return;
+            hasError = true;
         }
+
+        // Проверка email
+        if (TextUtils.isEmpty(email)) {
+            layoutEmail.setError(getString(R.string.error_invalid_email));
+            hasError = true;
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            layoutEmail.setError(getString(R.string.error_invalid_email_format));
+            hasError = true;
+        } else if (email.contains(" ")) {
+            layoutEmail.setError(getString(R.string.error_no_spaces));
+            hasError = true;
+        }
+
+        // Проверка пароля
+        if (TextUtils.isEmpty(password) || password.length() < 6) {
+            layoutPassword.setError(getString(R.string.error_invalid_password));
+            hasError = true;
+        } else if (password.contains(" ")) {
+            layoutPassword.setError(getString(R.string.error_no_spaces));
+            hasError = true;
+        }
+
+        if (hasError) return;
+
         // Форматирование имени и фамилии: первая буква заглавная, остальные маленькие
         name = capitalizeFirstLetter(name);
         surname = capitalizeFirstLetter(surname);
         editTextName.setText(name);
         editTextSurname.setText(surname);
 
-        // Проверка email
-        if (TextUtils.isEmpty(email)) {
-            layoutEmail.setError(getString(R.string.error_invalid_email));
-            return;
-        }
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            layoutEmail.setError(getString(R.string.error_invalid_email_format));
-            return;
-        }
-        if (email.contains(" ")) {
-            layoutEmail.setError(getString(R.string.error_no_spaces));
-            return;
-        }
-        // Проверка пароля
-        if (TextUtils.isEmpty(password) || password.length() < 6) {
-            layoutPassword.setError(getString(R.string.error_invalid_password));
-            return;
-        }
-        if (password.contains(" ")) {
-            layoutPassword.setError(getString(R.string.error_no_spaces));
-            return;
-        }
         btnRegister.setEnabled(false);
         String finalName = name;
         String finalSurname = surname;
@@ -115,8 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            // Сохраняем профиль пользователя через объект User
-                            User userObj = new User(user.getUid(), finalName, finalSurname, email);
+                            long createdAt = System.currentTimeMillis();
+                            User userObj = new User(user.getUid(), finalName, finalSurname, email, createdAt);
                             usersRef.child(user.getUid()).setValue(userObj)
                                     .addOnCompleteListener(dbTask -> {
                                         if (dbTask.isSuccessful()) {
